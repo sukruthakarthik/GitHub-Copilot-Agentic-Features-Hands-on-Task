@@ -18,7 +18,7 @@ Estimated time: **15–20 minutes**
 Make sure the following are installed:
 
 * Visual Studio Code
-* Python (version 3.9 or higher)
+* Python (version 3.9 or higher)/any preferred language
 * Git
 * GitHub Copilot
 * GitHub Copilot Chat
