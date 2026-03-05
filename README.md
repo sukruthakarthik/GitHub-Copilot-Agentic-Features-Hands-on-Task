@@ -1,4 +1,4 @@
-# GitHub Copilot Agentic Features – Hands-on Task
+# GitHub Copilot Agentic Features – Hands-on Lab
 
 ## Objective
 
@@ -9,24 +9,40 @@ Build a small **API Log Performance Analyzer** using GitHub Copilot by leveragin
 * Copilot Skills
 * Custom Agent
 
-Time limit: **15 minutes**
+Estimated time: **15–20 minutes**
 
 ---
 
-# Scenario
+## Prerequisites
 
-Your organization runs several microservices. Recently, the platform team noticed that some APIs are responding slowly.
+Before starting this lab, make sure you have completed the following:
 
-You need to quickly build a **tool that analyzes API logs and identifies slow endpoints**.
+* ✅ **Exercise 00 – Build the Order Management API** (`00-Exercies.md`)
+  This exercise produces the `logs.json` file that you will use in this lab.
+  _(File name `00-Exercies.md` contains a typo and is kept as-is for backward compatibility.)_
+* Visual Studio Code installed
+* Python (version 3.9 or higher) installed
+* GitHub Copilot and GitHub Copilot Chat enabled in VS Code
+* The `order-api-service` project from Exercise 00 with a populated `logs.json`
 
-The logs contain the following fields:
+> ⚠️ **Do not proceed with this lab until you have completed Exercise 00 and have a `logs.json` file with API logs.**
 
-* endpoint
-* response_time
-* status_code
-* timestamp
+---
 
-Example log:
+## Scenario
+
+Your organization runs several microservices. The platform team has collected API request logs from the Order Management Service you built in Exercise 00.
+
+Your goal is to quickly build a **tool that analyzes those API logs and identifies slow endpoints**.
+
+The logs you generated contain the following fields:
+
+* `endpoint`
+* `response_time`
+* `status_code`
+* `timestamp`
+
+Example log entry:
 
 ```json
 [
@@ -47,9 +63,49 @@ Example log:
 
 ---
 
-# Task 1 – Configure Copilot Instructions
+## Step 1 – Set Up the Project
 
-Create a file:
+Create a new project folder for the analyzer.
+
+```bash
+mkdir api-log-analyzer
+cd api-log-analyzer
+code .
+```
+
+Create and activate a Python virtual environment.
+
+```bash
+python -m venv venv
+```
+
+Activate environment:
+
+Windows
+
+```bash
+venv\Scripts\activate
+```
+
+Mac/Linux
+
+```bash
+source venv/bin/activate
+```
+
+Install dependencies.
+
+```bash
+pip install fastapi uvicorn
+```
+
+Copy the `logs.json` file from your `order-api-service` project into this folder.
+
+---
+
+## Step 2 – Configure Copilot Instructions
+
+Create the following file in your project:
 
 ```
 .github/copilot-instructions.md
@@ -69,11 +125,11 @@ Follow these standards:
 - Generate pytest unit tests
 ```
 
-This ensures Copilot generates **consistent and structured code**.
+This ensures Copilot generates **consistent and structured code** throughout this exercise.
 
 ---
 
-# Task 2 – Use a Copilot Prompt to Generate the Application
+## Step 3 – Generate the Analyzer Application Using Copilot
 
 Create a file called:
 
@@ -81,10 +137,10 @@ Create a file called:
 app.py
 ```
 
-Use Copilot Chat and prompt:
+Open **Copilot Chat** and paste the following prompt:
 
 ```
-Create a FastAPI service that reads API logs from a JSON file.
+Create a FastAPI service that reads API logs from a JSON file called logs.json.
 
 Each log contains:
 endpoint
@@ -106,11 +162,43 @@ The API should provide the following endpoints:
 Use clean architecture and add logging.
 ```
 
-Let Copilot generate the application.
+Allow Copilot to generate the application and save the output to `app.py`.
 
 ---
 
-# Task 3 – Create Copilot Skills
+## Step 4 – Run the Application
+
+Start the server.
+
+```bash
+uvicorn app:app --reload
+```
+
+The API will run at:
+
+```
+http://127.0.0.1:8000
+```
+
+Open the Swagger UI to explore the endpoints:
+
+```
+http://127.0.0.1:8000/docs
+```
+
+Test each endpoint:
+
+```
+GET /slow-endpoints
+GET /average-response
+GET /error-rate
+```
+
+Verify that the responses reflect the log data from your `logs.json` file.
+
+---
+
+## Step 5 – Define Copilot Skills
 
 Create a file called:
 
@@ -118,7 +206,7 @@ Create a file called:
 skills.md
 ```
 
-Define the following skills.
+Define the following skills:
 
 ### Skill 1 – Log Analyzer
 
@@ -148,11 +236,11 @@ Recommendations should include:
 - indexing strategies
 ```
 
-Use Copilot Chat and ask it to **apply these skills to your generated code**.
+Open **Copilot Chat** and ask it to **apply these skills to your generated `app.py`**.
 
 ---
 
-# Task 4 – Create a Custom Agent
+## Step 6 – Create a Custom Agent
 
 Create a file:
 
@@ -160,7 +248,7 @@ Create a file:
 agent.md
 ```
 
-Define a **Performance Engineer Agent**.
+Define a **Performance Engineer Agent** with the following content:
 
 ```
 Agent Name: API Performance Engineer
@@ -172,7 +260,7 @@ Responsibilities:
 - Recommend monitoring metrics
 ```
 
-Now ask the agent:
+In **Copilot Chat**, ask the agent:
 
 ```
 Analyze the API logs and provide:
@@ -183,24 +271,26 @@ Analyze the API logs and provide:
 4. Metrics that should be monitored
 ```
 
----
-
-# Expected Output
-
-By the end of the exercise you should have:
-
-* A FastAPI application
-* Log analysis endpoints
-* Copilot instructions configured
-* Skills defined
-* A custom agent performing analysis
+Review the agent's recommendations and apply any code improvements it suggests.
 
 ---
 
-# Bonus Challenge (Optional)
+## Outcome
+
+By the end of this lab you should have:
+
+* ✅ A working **API Log Performance Analyzer** built with FastAPI
+* ✅ Three analysis endpoints (`/slow-endpoints`, `/average-response`, `/error-rate`)
+* ✅ Copilot instructions configured in `.github/copilot-instructions.md`
+* ✅ Copilot skills defined in `skills.md`
+* ✅ A custom agent defined in `agent.md` with performance recommendations
+
+---
+
+## Bonus Challenge (Optional)
 
 Ask Copilot to extend the application with:
 
-* A dashboard endpoint
-* A CSV report of slow APIs
-* Prometheus metrics for monitoring
+* A `/dashboard` endpoint that returns a summary of all metrics
+* A `/report/csv` endpoint that downloads a CSV report of slow APIs
+* Prometheus metrics integration for real-time monitoring

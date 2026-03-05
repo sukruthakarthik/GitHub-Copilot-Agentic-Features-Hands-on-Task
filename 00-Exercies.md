@@ -213,13 +213,17 @@ By the end of this exercise you should have:
 
 # Next Exercise
 
-In the next hands-on session, you will build an **API Log Performance Analyzer** that will:
+➡️ Once you have completed this exercise and have a populated `logs.json` file, proceed to the next hands-on lab:
+
+**[GitHub Copilot Agentic Features – Hands-on Lab](README.md)**
+
+In that lab, you will build an **API Log Performance Analyzer** that will:
 
 * Identify slow endpoints
 * Calculate average response time
 * Detect high error rate APIs
 * Recommend performance improvements using AI agents
 
-The logs generated in this exercise will serve as the **input dataset** for the analyzer.
+The `logs.json` file generated in this exercise will serve as the **input dataset** for the analyzer.
 
 ---
