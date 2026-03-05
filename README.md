@@ -25,4 +25,4 @@ Make sure the following are installed:
 
 ---
 # Exercise
-Start with [00-Exercise](./00-Exercies.md) to create application
+Start with [00-Exercise](./Exercise/Building-API.md) to create application
