@@ -1,0 +1,4 @@
+/api-log-analyzer/venv/*
+/order-api-service/venv/*
+/api-log-analyzer/__pycache__/*
+/order-api-service/__pycache__/*
