@@ -76,5 +76,41 @@
     "response_time": 31,
     "status_code": 200,
     "timestamp": "2026-03-12T08:12:50"
+  },
+  {
+    "endpoint": "/docs",
+    "response_time": 0,
+    "status_code": 200,
+    "timestamp": "2026-03-12T08:44:16"
+  },
+  {
+    "endpoint": "/openapi.json",
+    "response_time": 0,
+    "status_code": 200,
+    "timestamp": "2026-03-12T08:44:16"
+  },
+  {
+    "endpoint": "/docs",
+    "response_time": 0,
+    "status_code": 200,
+    "timestamp": "2026-03-12T10:42:53"
+  },
+  {
+    "endpoint": "/openapi.json",
+    "response_time": 0,
+    "status_code": 200,
+    "timestamp": "2026-03-12T10:42:54"
+  },
+  {
+    "endpoint": "/docs",
+    "response_time": 0,
+    "status_code": 200,
+    "timestamp": "2026-03-12T10:43:26"
+  },
+  {
+    "endpoint": "/openapi.json",
+    "response_time": 0,
+    "status_code": 200,
+    "timestamp": "2026-03-12T10:43:27"
   }
 ]
